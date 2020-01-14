@@ -12,7 +12,11 @@ class PostsController < ApplicationController
 
     def create 
         post  = Post.create(post_params)
-        render json: post 
+        if post.valid?
+            render json: post
+        else
+            render json: {errors: post.errors.full_messages} 
+        end
     end 
 
     def update 
@@ -29,7 +33,7 @@ class PostsController < ApplicationController
     end 
     
     def post_params
-        params.permit(:img, :comment, :likes, :profile_id)
+        params.permit(:img, :caption, :likes, :user_id)
     end 
     
 end
