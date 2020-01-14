@@ -28,14 +28,15 @@ ActiveRecord::Schema.define(version: 2020_01_08_185710) do
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.text "bio"
+    t.text "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
+    t.string "username"
+    t.string "password_digest"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

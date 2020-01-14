@@ -1,35 +1,38 @@
 class UsersController < ApplicationController
 
-    def index
-        users = User.all
-        render json: users 
+    def show
+        user = User.find(params[:id])
+        render json: user, include: :posts
     end
 
-    def show 
-        user = User.find(params[:id])
-        render json: user
-    end 
+    def create
+        user = User.create(user_params)
+        if user.valid?
+            user = user
+            token = JWT.encode({user_id: user.id}, secret, 'HS256')
+            render json: {user: user, token: token}
+        else
+            render json: {errors: user.errors.full_messages}
+        end
+    end
 
-    def create 
-        user  = User.create(user_params)
-        render json: user 
-    end 
-
-    def update 
+    def update
         user = User.find(params[:id])
         user.update(user_params)
-        render json: user 
-    end 
+        render json: user
+    end
 
-    
     def destroy
         user = User.find(params[:id])
-        user.destroy 
-        render json: user
-    end 
-    
+        user.destroy
+    end
+
+    private
+
     def user_params
-        params.permit(:name, :password, :email)
+        params.permit(:username, :password, :email)
     end 
     
 end
+
+
