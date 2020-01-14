@@ -22,6 +22,10 @@ class AuthController < ApplicationController
 
     private
 
+    def secret 
+        "mineraliker"
+    end 
+
     def login_params
         params.permit(:username, :password)
     end
