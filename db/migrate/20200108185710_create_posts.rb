@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :img
       t.string :caption
       t.integer :likes
-      t.belongs_to :profile 
+      t.belongs_to :user
 
       t.timestamps
     end

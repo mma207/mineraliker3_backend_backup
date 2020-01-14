@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-    has_many :posts, through: :profile
-    has_one :profile
+    has_many :posts, dependent: :destroy 
 
     has_secure_password
 

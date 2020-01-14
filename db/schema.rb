@@ -27,26 +27,19 @@ ActiveRecord::Schema.define(version: 2020_01_14_143011) do
     t.string "img"
     t.string "caption"
     t.integer "likes"
-    t.bigint "profile_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["profile_id"], name: "index_posts_on_profile_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "bio"
-    t.text "avatar"
-    t.text "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.string "email"
+    t.string "avatar"
+    t.text "bio"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
