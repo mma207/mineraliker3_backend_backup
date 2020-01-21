@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     end 
     
     def post_params
-        params.permit(:img, :caption, :likes, :user_id)
+        params.permit(:img, :caption, :likes, :user_id, :avatar, :username)
     end 
     
 end
